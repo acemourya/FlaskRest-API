@@ -19,8 +19,8 @@ class UserDetiails(MethodView):
             uploaded_file = request.files['file']
             if uploaded_file.filename != '':
                 uploaded_file.save('./data.csv')
-                if UserDetails.parseCSV():
-                    return jsonify({"status": 200, "message": "Successfully uploaded file."})
+                if self.parseCSV():
+                    return jsonify({"status": 200, "message": "Successfully uploaded file"})
             return jsonify({"status": 400, "message": "Failed to upload file! Please try again to upload file"})
         except:
             return jsonify({"status": 400, "message": "Failed to upload file"})

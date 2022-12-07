@@ -14,13 +14,12 @@ class Register(MethodView):
     def post(self):
         try:
             username = request.form['username']
-            password = request.form['password']
-            confirm_password = request.form['confirm_password']
+            user_code = request.form['password']
+            confirm_user_code = request.form['confirm_password']
             if bool(User.query.filter_by(username=username).first()) is False:
-                if password == confirm_password:
-                    encyptpass = sha256_crypt.encrypt(password)
-                    entry = User(username=username, password=encyptpass)
-                    db.create_all()
+                if user_code == confirm_user_code:
+                    encypt_code = sha256_crypt.encrypt(user_code)
+                    entry = User(username=username, user_code=encypt_code)
                     db.session.add(entry)
                     db.session.commit()
                     return jsonify({"status": 200, "message": "Successfully register"})
@@ -37,14 +36,12 @@ class Login(MethodView):
 
         try:
             username = request.form['username']
-            password = request.form['password']
+            user_code = request.form['password']
             user = User.query.filter_by(username=username).first()
-            pas = user.password
-            if (sha256_crypt.verify(password, pas)):
-                print(user)
+            pas = user.user_code
+            if (sha256_crypt.verify(user_code, pas)):
                 session['username'] = username
-                print(user, pas)
-                return jsonify({"status": 200, "message": "Success login"})
+                return jsonify({"status": 200, "message": "Successfully login"})
             return jsonify({"status": 400, "message": "Invalid username or password"})
         except:
             return jsonify({"status": 400, "message": "Failed to login try again"})
