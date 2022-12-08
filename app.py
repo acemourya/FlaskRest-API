@@ -1,6 +1,7 @@
 import models
 from db import db
 from flask import Flask
+from flask_cors import CORS
 from flask_smorest import Api
 from resources.user import blp as UserBlueprint
 from resources.user_details import blp as UserDetailsBlueprint
@@ -9,6 +10,7 @@ from resources.user_details import blp as UserDetailsBlueprint
 def create_app():
 
     app = Flask(__name__)
+    CORS(app)
     app.secret_key = 'super_secret-key'
 
     app.config["PROPAGATE_EXCEPTIONS"] = True
