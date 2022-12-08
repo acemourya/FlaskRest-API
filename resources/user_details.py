@@ -1,9 +1,9 @@
 import os
 import csv
 from db import db
-from flask import request, jsonify
+from flask import request, jsonify, make_response
 from flask.views import MethodView
-from flask_smorest import Blueprint
+from flask_smorest import Blueprint, abort
 from models.user_details import UserDetails
 
 
@@ -20,10 +20,10 @@ class UserDetiails(MethodView):
             if uploaded_file.filename != '':
                 uploaded_file.save('./data.csv')
                 if self.parseCSV():
-                    return jsonify({"status": 200, "message": "Successfully uploaded file"})
-            return jsonify({"status": 400, "message": "Failed to upload file! Please try again to upload file"})
+                    return make_response(jsonify(message="Successfully uploaded file"), 200)
+            return make_response(jsonify(message="Failed to upload file! Please try again"), 400)
         except:
-            return jsonify({"status": 400, "message": "Failed to upload file"})
+            return make_response(jsonify(message="Failed to upload file"), 400)
 
     def parseCSV(self):
         try:
