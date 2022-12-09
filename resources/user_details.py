@@ -3,7 +3,7 @@ import csv
 from db import db
 from flask import request, jsonify, make_response
 from flask.views import MethodView
-from flask_smorest import Blueprint, abort
+from flask_smorest import Blueprint
 from models.user_details import UserDetails
 
 
