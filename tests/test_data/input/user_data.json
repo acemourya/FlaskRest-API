@@ -1,0 +1,40 @@
+{
+    "user_register_cred": {
+            "username": "XYZ@0120",
+            "password": "12345",
+            "confirm_password": "12345"
+        },
+
+    "user_resgister_invalid_cred": {
+            "username": "XYZ@0129",
+            "password": "1234",
+            "confirm_password": "12345"
+        },
+
+    "user_register_existing_cred": {
+            "username": "XYZ@012",
+            "password": "12345",
+            "confirm_password": "12345"
+        },
+
+    "user_resgister_wrong_cred": {
+            "usernam": "XYZ@012",
+            "password": "1234",
+            "confirm_password": "12345"
+        },
+
+    "user_login_cred": {
+            "username": "XYZ@012",
+            "password": "12345"
+        },
+
+    "user_login_invaild_cred": {
+            "username": "XYZ@012",
+            "password": "1235"
+        },
+        
+    "user_login_wrong_cred": {
+            "usernam": "XYZ@0129",
+            "password": "12345"
+        }
+}
