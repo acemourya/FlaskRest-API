@@ -30,7 +30,7 @@ class UserUtils:
             with create_app().app_context():
                 with open(file_path, 'r') as data:
                     for user_details in csv.DictReader(data):
-                        User.query.filter_by(
+                        UserDetails.query.filter_by(
                             username=user_details['Username']).delete()
         except:
             logging.error('User details is not deleted')
